@@ -1,0 +1,117 @@
+/* File: src/components/DashboardPage.css */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.stalls-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* MODIFIED to work with the new Link structure */
+.stall-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* The padding is now on the LINK, not the card itself */
+}
+
+/* This is the text part of the card, now inside the link */
+.stall-info h3 {
+    margin-top: 0;
+}
+.stall-info p {
+    margin-bottom: 0;
+}
+
+
+.delete-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex-shrink: 0; 
+    margin: 20px; /* Give the button some space inside the card */
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.main-error {
+    margin-bottom: 20px;
+}
+
+/* NEW STYLES for our clickable link */
+.stall-info-link {
+    flex-grow: 1; /* Makes the link take up the available horizontal space */
+    text-decoration: none; /* Removes the ugly blue underline from the link */
+    color: inherit; /* Makes the link text use the default text color */
+    padding: 20px; /* Give the clickable area some space */
+    transition: background-color 0.2s;
+    border-radius: 8px; /* Round the corners */
+}
+
+/* When you hover over the link, the background changes color */
+.stall-info-link:hover {
+    background-color: #f8f9fa;
+}
+
+/* Add this to the bottom of DashboardPage.css */
+.add-stock-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+.add-stock-btn:hover {
+    background-color: #0056b3;
+}
+/* Add these new styles to the bottom of your file */
+
+.stall-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 8px;              /* Space between the buttons */
+    margin: 15px;
+    align-items: flex-end;
+}
+
+.qr-link-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ffc107;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    min-width: 90px; /* Give buttons a consistent width */
+}
+
+.qr-link-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    min-width: 90px;
+}

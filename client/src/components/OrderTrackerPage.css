@@ -1,0 +1,82 @@
+/* File: src/components/OrderTrackerPage.css */
+.tracker-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5;
+    font-family: sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.tracker-card {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.tracker-card h2 {
+    margin-top: 0;
+}
+
+.order-id {
+    font-family: monospace;
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.status-display {
+    margin: 20px 0;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.status-pending { background-color: #007bff; }
+.status-in_progress { background-color: #ffc107; color: #333; }
+.status-ready { background-color: #28a745; }
+.status-served { background-color: #6c757d; }
+
+.status-timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.step {
+    color: #aaa;
+}
+
+.step.completed {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.footer-note {
+    font-style: italic;
+    color: #888;
+}
+
+.home-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+.home-link:hover {
+    text-decoration: underline;
+}
