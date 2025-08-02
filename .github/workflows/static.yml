@@ -1,43 +1,60 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+# File: .github/workflows/static.yml
 
+# Name of our automated workflow
+name: Deploy React Frontend to GitHub Pages
+
+# When this workflow should run
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes to the "main" branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab on GitHub
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Grant GITHUB_TOKEN the permissions it needs to deploy
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# This is a safety measure to cancel old runs if you push again quickly
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
+# Define the single "job" in our workflow, which we'll call "deploy"
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Use a modern version of Node.js
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./client # IMPORTANT: Run this command inside the client folder
+
+      - name: Build the React application
+        run: npm run build
+        working-directory: ./client # IMPORTANT: Run this command inside the client folder
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload the built application artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Tell it to upload the contents of the 'build' folder from our client app
+          path: './client/build'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
