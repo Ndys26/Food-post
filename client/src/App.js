@@ -1,38 +1,38 @@
 // File: src/App.js
 import './App.css'; 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// Import our page components
+// === THIS IS THE ONLY LINE YOU NEED TO CHANGE ===
+// We are now using HashRouter, which is perfect for GitHub Pages.
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Import all your page components as before
+import WelcomePage from './components/WelcomePage';
 import LoginPage from './components/LoginPage';
+// ... and all the rest of your components ...
 import DashboardPage from './components/DashboardPage';
-import NotFoundPage from './components/NotFoundPage';
-import Layout from './components/Layout';
-import StallManagePage from './components/StallManagePage';
+import StallSelectionPage from './components/StallSelectionPage';
 import PublicMenuPage from './components/PublicMenuPage';
+import OrderTrackerPage from './components/OrderTrackerPage';
 import KitchenDashboard from './components/KitchenDashboard';
 import ReportsPage from './components/ReportsPage';
 import InventoryPage from './components/InventoryPage';
-import OrderTrackerPage from './components/OrderTrackerPage';
 import ModifierManagerPage from './components/ModifierManagerPage';
+import StallManagePage from './components/StallManagePage';
+import Layout from './components/Layout';
+import NotFoundPage from './components/NotFoundPage';
 
-// <<< 1. Import our new StallSelectionPage >>>
-import StallSelectionPage from './components/StallSelectionPage';
 
 function App() {
   return (
+    // <Router> is now our HashRouter
     <Router>
       <Routes>
-        {/* === PUBLIC ROUTES === */}
+        {/* === All your <Route> configurations below this line stay exactly the same === */}
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/login" element={<LoginPage />} />
-
-        {/* This is the new Customer Homepage */}
-        <Route path="/" element={<StallSelectionPage />} />
-
+        <Route path="/customer" element={<StallSelectionPage />} />
         <Route path="/stalls/:stallId" element={<PublicMenuPage />} />
         <Route path="/orders/:orderId" element={<OrderTrackerPage />} />
-
-
-        {/* === PROTECTED ROUTES === */}
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/stalls/:stallId/manage" element={<StallManagePage />} />
@@ -41,11 +41,7 @@ function App() {
           <Route path="/inventory" element={<InventoryPage />} />
           <Route path="/modifiers" element={<ModifierManagerPage />} />
         </Route>
-        
-        
-        {/* === CATCH-ALL ROUTE === */}
         <Route path="*" element={<NotFoundPage />} />
-
       </Routes>
     </Router>
   );
