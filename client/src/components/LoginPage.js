@@ -24,7 +24,7 @@ const LoginPage = () => {
 
         try {
             // This is the API call to your backend server
-            const response = await axios.post('http://localhost:5000/api/v1/auth/login', {
+            const response = await axios.post('https://food-court-pos-api.onrender.com/api/v1/auth/login', {
                 email: email,
                 password: password
             });

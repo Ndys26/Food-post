@@ -26,7 +26,7 @@ const AddStallForm = ({ onStallAdded }) => {
                 return;
             }
 
-            const response = await axios.post('http://localhost:5000/api/v1/stalls', 
+            const response = await axios.post('https://food-court-pos-api.onrender.com/api/v1/stalls', 
                 { name, description }, // The data to send
                 { headers: { 'Authorization': `Bearer ${token}` } } // The auth header
             );

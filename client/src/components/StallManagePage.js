@@ -26,10 +26,10 @@ const StallManagePage = () => {
             setError(''); // Clear previous errors on a new fetch
 
             const [stallRes, menuRes, inventoryRes, modifiersRes] = await Promise.all([
-                axios.get(`http://localhost:5000/api/v1/stalls/${stallId}`),
-                axios.get(`http://localhost:5000/api/v1/stalls/${stallId}/menu-items`),
-                axios.get('http://localhost:5000/api/v1/inventory', { headers: { Authorization: `Bearer ${token}` } }),
-                axios.get('http://localhost:5000/api/v1/modifiers', { headers: { Authorization: `Bearer ${token}` } })
+                axios.get(`https://food-court-pos-api.onrender.com/api/v1/stalls/${stallId}`),
+                axios.get(`https://food-court-pos-api.onrender.com/api/v1/stalls/${stallId}/menu-items`),
+                axios.get('https://food-court-pos-api.onrender.com/api/v1/inventory', { headers: { Authorization: `Bearer ${token}` } }),
+                axios.get('https://food-court-pos-api.onrender.com/api/v1/modifiers', { headers: { Authorization: `Bearer ${token}` } })
             ]);
             
             setStall(stallRes.data.data.stall);
@@ -56,7 +56,7 @@ const StallManagePage = () => {
         if (!window.confirm("Delete this menu item permanently?")) return;
         try {
             const token = getToken(); // Get the token directly here
-            await axios.delete(`http://localhost:5000/api/v1/menu-items/${itemId}`, { 
+            await axios.delete(`https://food-court-pos-api.onrender.com/api/v1/menu-items/${itemId}`, { 
                 headers: { 'Authorization': `Bearer ${token}` } // Correct usage
             });
             // After deleting, re-fetch all data to ensure the list is accurate

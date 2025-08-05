@@ -26,7 +26,7 @@ const AddMenuItemForm = ({ stallId, onMenuItemAdded }) => {
             const newMenuItem = { name, description, price, category };
 
             const response = await axios.post(
-                `http://localhost:5000/api/v1/stalls/${stallId}/menu-items`,
+                `https://food-court-pos-api.onrender.com/api/v1/stalls/${stallId}/menu-items`,
                 newMenuItem,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

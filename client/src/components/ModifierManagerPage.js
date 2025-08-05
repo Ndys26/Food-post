@@ -13,7 +13,7 @@ const ModifierManagerPage = () => {
     useEffect(() => {
         const fetchModifiers = async () => {
             const token = getToken();
-            const response = await axios.get('http://localhost:5000/api/v1/modifiers', {
+            const response = await axios.get('https://food-court-pos-api.onrender.com/api/v1/modifiers', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setModifiers(response.data.data.modifiers);
@@ -25,7 +25,7 @@ const ModifierManagerPage = () => {
         e.preventDefault();
         const token = getToken();
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/modifiers', 
+            const response = await axios.post('https://food-court-pos-api.onrender.com/api/v1/modifiers', 
                 { name, price_change: price },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

@@ -19,7 +19,7 @@ const InventoryPage = () => {
             try {
                 setLoading(true);
                 const token = getToken();
-                const response = await axios.get('http://localhost:5000/api/v1/inventory', {
+                const response = await axios.get('https://food-court-pos-api.onrender.com/api/v1/inventory', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setItems(response.data.data.items);
@@ -37,7 +37,7 @@ const InventoryPage = () => {
         setError('');
         try {
             const token = getToken();
-            const response = await axios.post('http://localhost:5000/api/v1/inventory', 
+            const response = await axios.post('https://food-court-pos-api.onrender.com/api/v1/inventory', 
                 { name: newItemName, unit: newItemUnit },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
@@ -58,7 +58,7 @@ const InventoryPage = () => {
 
         try {
             const token = getToken();
-            const response = await axios.put(`http://localhost:5000/api/v1/inventory/${itemId}/add-stock`,
+            const response = await axios.put(`https://food-court-pos-api.onrender.com/api/v1/inventory/${itemId}/add-stock`,
                 { quantityToAdd: Number(quantityToAdd) },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

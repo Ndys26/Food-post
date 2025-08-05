@@ -1,20 +1,25 @@
 // File: server/db.js
-
 const { Pool } = require('pg');
 require('dotenv').config();
 
-const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-});
+// This object will hold our connection configuration.
+const connectionConfig = {
+  connectionString: process.env.DATABASE_URL,
+};
+
+// When our app is running in the "production" environment on Render,
+// we MUST enable SSL. Render provides the DATABASE_URL, and this code
+// adds the necessary SSL flag if we are on Render.
+if (process.env.NODE_ENV === 'production') {
+  connectionConfig.ssl = {
+    rejectUnauthorized: false
+  };
+}
+
+// Create the pool with our final configuration.
+const pool = new Pool(connectionConfig);
 
 module.exports = {
-    // This is the function for simple, single queries
-    query: (text, params) => pool.query(text, params),
-
-    // This is the NEW function for getting a client from the pool to handle complex transactions
-    getClient: () => pool.connect(),
+  query: (text, params) => pool.query(text, params),
+  getClient: () => pool.connect(),
 };

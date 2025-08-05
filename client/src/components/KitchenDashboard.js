@@ -38,7 +38,7 @@ const KitchenDashboard = () => {
         try {
             const token = getToken();
             setError('');
-            await axios.put(`http://localhost:5000/api/v1/orders/${orderId}/status`, 
+            await axios.put(`https://food-court-pos-api.onrender.com/api/v1/orders/${orderId}/status`, 
                 { status: newStatus },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

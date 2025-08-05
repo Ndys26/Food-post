@@ -11,7 +11,7 @@ const StallSelectionPage = () => {
     useEffect(() => {
         const fetchStalls = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/v1/stalls');
+                const response = await axios.get('https://food-court-pos-api.onrender.com/api/v1/stalls');
                 setStalls(response.data.data.stalls);
             } catch (err) {
                 console.error("Failed to fetch stalls for selection", err);

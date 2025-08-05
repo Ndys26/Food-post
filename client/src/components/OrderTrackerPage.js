@@ -28,7 +28,7 @@ const OrderTrackerPage = () => {
         const fetchOrder = async () => {
             try {
                 // IMPORTANT: The API endpoint must be correct here
-                const response = await axios.get(`http://localhost:5000/api/v1/orders/${orderId}`);
+                const response = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/orders/${orderId}`);
                 setOrder(response.data.data.order);
             } catch (err) {
                 setError('Could not find your order. Please check the ID.');

@@ -14,7 +14,7 @@ const RecipeManager = ({ menuItemId, allInventoryItems }) => {
             try {
                 setLoading(true);
                 const token = getToken();
-                const response = await axios.get(`http://localhost:5000/api/v1/menu-items/${menuItemId}/recipe`, {
+                const response = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/menu-items/${menuItemId}/recipe`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setRecipe(response.data.data.recipe);
@@ -32,7 +32,7 @@ const RecipeManager = ({ menuItemId, allInventoryItems }) => {
         if (!selectedInventoryId || !quantityUsed) return;
         try {
             const token = getToken();
-            const response = await axios.post('http://localhost:5000/api/v1/recipes', 
+            const response = await axios.post('https://food-court-pos-api.onrender.com/api/v1/recipes', 
                 { menu_item_id: menuItemId, inventory_item_id: selectedInventoryId, quantity_used: quantityUsed },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

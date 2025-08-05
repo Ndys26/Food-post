@@ -20,8 +20,8 @@ const PublicMenuPage = () => {
         const fetchData = async () => {
             setError(''); setLoading(true);
             try {
-                const stallResponse = await axios.get(`http://localhost:5000/api/v1/stalls/${stallId}`);
-                const menuResponse = await axios.get(`http://localhost:5000/api/v1/stalls/${stallId}/menu-items`);
+                const stallResponse = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/stalls/${stallId}`);
+                const menuResponse = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/stalls/${stallId}/menu-items`);
                 setStall(stallResponse.data.data.stall);
                 setMenuItems(menuResponse.data.data.items);
             } catch (err) { setError('Sorry, we could not load the menu for this stall.'); } 
@@ -50,7 +50,7 @@ const PublicMenuPage = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/orders', orderData);
+            const response = await axios.post('https://food-court-pos-api.onrender.com/api/v1/orders', orderData);
             
             const newOrderId = response.data.data.order.order_id;
             console.log('Order submitted successfully! Order ID:', newOrderId);

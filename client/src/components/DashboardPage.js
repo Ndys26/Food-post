@@ -14,7 +14,7 @@ const DashboardPage = () => {
 
     // --- Data fetching and handlers ---
     const fetchStalls = async () => {
-        try { setLoading(true); const response = await axios.get('http://localhost:5000/api/v1/stalls'); setStalls(response.data.data.stalls); } 
+        try { setLoading(true); const response = await axios.get('https://food-court-pos-api.onrender.com/api/v1/stalls'); setStalls(response.data.data.stalls); } 
         catch (err) { setError('Failed to fetch stalls.'); console.error('Error fetching stalls:', err); } 
         finally { setLoading(false); }
     };
@@ -22,7 +22,7 @@ const DashboardPage = () => {
 
     const handleDelete = async (stallId) => {
         if (!window.confirm("Are you sure you want to delete this stall?")) { return; }
-        try { const token = getToken(); await axios.delete(`http://localhost:5000/api/v1/stalls/${stallId}`, { headers: { 'Authorization': `Bearer ${token}` } }); setStalls(stalls.filter(stall => stall.stall_id !== stallId)); } 
+        try { const token = getToken(); await axios.delete(`https://food-court-pos-api.onrender.com/api/v1/stalls/${stallId}`, { headers: { 'Authorization': `Bearer ${token}` } }); setStalls(stalls.filter(stall => stall.stall_id !== stallId)); } 
         catch (err) { setError('Failed to delete stall.'); console.error('Error deleting stall:', err); }
     };
 

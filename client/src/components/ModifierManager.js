@@ -12,7 +12,7 @@ const ModifierManager = ({ menuItem, allModifiers, onModifierAssigned }) => {
         const fetchAssignedModifiers = async () => {
             try {
                 const token = getToken();
-                const response = await axios.get(`http://localhost:5000/api/v1/menu-items/${menuItem.item_id}/modifiers`, {
+                const response = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/menu-items/${menuItem.item_id}/modifiers`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setAssignedModifiers(response.data.data.modifiers);
@@ -33,7 +33,7 @@ const ModifierManager = ({ menuItem, allModifiers, onModifierAssigned }) => {
         if (!selectedModifierId) return;
         try {
             const token = getToken();
-            await axios.post('http://localhost:5000/api/v1/menu-item-modifiers', 
+            await axios.post('https://food-court-pos-api.onrender.com/api/v1/menu-item-modifiers', 
                 { menu_item_id: menuItem.item_id, modifier_id: selectedModifierId },
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

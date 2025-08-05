@@ -26,7 +26,7 @@ const ReportsPage = () => {
         const fetchStalls = async () => {
             try {
                 const token = getToken();
-                const response = await axios.get('http://localhost:5000/api/v1/stalls', {
+                const response = await axios.get('https://food-court-pos-api.onrender.com/api/v1/stalls', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setStalls(response.data.data.stalls);
@@ -46,7 +46,7 @@ const ReportsPage = () => {
 
         try {
             const token = getToken();
-            const response = await axios.get(`http://localhost:5000/api/v1/reports/${reportType}-sales`, {
+            const response = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/reports/${reportType}-sales`, {
                 headers: { 'Authorization': `Bearer ${token}` },
                 params: { date: selectedDate }
             });
@@ -69,7 +69,7 @@ const ReportsPage = () => {
 
         try {
             const token = getToken();
-            const response = await axios.get(`http://localhost:5000/api/v1/reports/breakeven/${selectedStall}`, {
+            const response = await axios.get(`https://food-court-pos-api.onrender.com/api/v1/reports/breakeven/${selectedStall}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setBreakevenReport(response.data.data.analysis);
